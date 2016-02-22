@@ -1,5 +1,6 @@
 var MovableCircle = function (x,y) {
   this.position = new p5.Vector (x,y);
+  // this.move = {x: 1, y: 1};???
 
 };
 
@@ -26,16 +27,16 @@ MovableCircle.prototype = {
     ellipse(this.position.x, this.position.y, this.radius * 2, this.radius * 2);
   },
   moveUp: function () {
-    this.position.y -= 1;
+    this.position.y = constrain(this.position.y -= 5, this.radius, height - (this.radius));
   },
   moveDown: function () {
-    this.position.y += 1;
+    this.position.y = constrain(this.position.y += 5, this.radius, height - (this.radius));
   },
   moveRight: function () {
-    this.position.x += 1;
+    this.position.x = constrain(this.position.x += 5, this.radius, height - (this.radius));
   },
   moveLeft: function () {
-    this.position.x -= 1;
+    this.position.x = constrain(this.position.x -= 5, this.radius, height - (this.radius));
   },
 };
 var myMovingBall;
