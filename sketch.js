@@ -1,10 +1,11 @@
 var MovableCircle = function (x, y) {
   this.position = new p5.Vector(x, y);
-
+  this.speed = 2;
 };
   MovableCircle.prototype = {
 
     radius: 30,
+
     initialize: function(){
       this.upListener = new KeyListener('W', this.moveUp, this);
       this.leftListener = new KeyListener('A', this.moveLeft, this);
@@ -26,26 +27,26 @@ var MovableCircle = function (x, y) {
 
 },
 moveUp: function(){
-  this.position.y -= 1;
+  this.position.y = constrain(this.position.y - this.speed, this.radius, height - this.radius);
 },
 
 moveDown: function(){
-  this.position.y += 1;
+  this.position.y = constrain(this.position.y + this.speed, this.radius, height - this.radius);
 },
 
 moveRight: function(){
-  this.position.x += 1;
+  this.position.x = constrain(this.position.x + this.speed, this.radius, width - this.radius);
 },
 
 moveLeft: function(){
-  this.position.x -= 1;
+  this.position.x = constrain(this.position.x - this.speed, this.radius, width - this.radius);
 },
 
 };
 
 
 setup = function() {
-    createCanvas(400, 400);
+    createCanvas(600, 400);
     myMovingBall = new MovableCircle(width / 2, height / 2);
     myMovingBall.initialize();
 };
