@@ -1,6 +1,6 @@
 var MovableCircle = function (x,y) {
   this.position = new p5.Vector (x,y);
-  // this.move = {x: 1, y: 1};???
+  this.speed = 5;
 
 };
 
@@ -27,16 +27,23 @@ MovableCircle.prototype = {
     ellipse(this.position.x, this.position.y, this.radius * 2, this.radius * 2);
   },
   moveUp: function () {
-    this.position.y = constrain(this.position.y -= 5, this.radius, height - (this.radius));
+    this.position.y = this.move(this.position.y, this.speed * -1, height);
   },
   moveDown: function () {
-    this.position.y = constrain(this.position.y += 5, this.radius, height - (this.radius));
+    this.position.y = this.move(this.position.y, this.speed, height);
   },
   moveRight: function () {
-    this.position.x = constrain(this.position.x += 5, this.radius, height - (this.radius));
+    this.position.x = this.move(this.position.x, this.speed, width);
   },
   moveLeft: function () {
-    this.position.x = constrain(this.position.x -= 5, this.radius, height - (this.radius));
+    this.position.x = this.move(this.position.x, this.speed * -1, width);
+  },
+  move: function(position, speed, upperLimit) {
+    var newPosition = constrain(position + speed, this.radius, upperLimit - this.radius);
+    return newPosition;
+    // This is refactored from the constrains under each moveDirection functions---example from moveLeft: this.position.x = constrain(this.position.x - this.speed, this.radius, width - this.radius);
+    //   move: function(value, speed, upperLimit) {
+    //  return constrain(value + speed, this.radius, upperLimit - this.radius); This is a bit less spelled out than what is currently being used with var newPosition instead of jumping right into return constrain...
   },
 };
 var myMovingBall;
