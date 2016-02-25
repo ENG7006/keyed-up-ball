@@ -4,6 +4,7 @@ var MovableCircle = function(x, y) {
 };
 
 MovableCircle.prototype = {
+
   radius:15,
 
   initialize: function () {
@@ -58,7 +59,7 @@ function draw() {
 
 
 /*
-Code I could not get to work:
+//Code I could not get to work:
 var MovableCircle = function(x, y) {
   this.position = new p5.Vector(x, y);
   this.movementStep = {x: 3, y: 3};
@@ -68,7 +69,7 @@ MovableCircle.prototye = {
 
   radius: 15,
 
-  initilize: function () {
+  initialize: function () {
     this.upListener = new KeyListener('W', this.moveUp, this);
 
   },
@@ -97,7 +98,7 @@ setup = function() {
   createCanvas(600, 600);
   ellipseMode(RADIUS);
   myMovingBall = new MovableCircle(width / 2, height / 2);
-  myMovingBall.initilize();
+  myMovingBall.initialize();
 
 };
 
